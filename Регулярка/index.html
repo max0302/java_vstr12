@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Java Script Intro</title>
+</head>
+<style>
+	
+</style>
+<body>
+	<script>
+		let str = 'Lorem ipsum dolor sit my.mail@mail.ru amet, consectetur adipisicing elit. Totam a veniam magnam quasi sint? Velit vero sequi esse, dolor repellendus. Lorem домище @разделить@ ipsum @разделить@ working дом dolor @разделить@ домработница sit @разделить@ домашний amet.';
+		let myExp = /hello/i;
+		// myExp = new new RegExp('hello');
+		if (myExp.test(str)) {
+			console.log('Даная подстрака входит в состав строки');
+		} else {
+			console.log('Даная подстрака не входит в состав строки');
+		}
+
+		let result = myExp.exec(str);
+		console.log(result);
+		document.write(result);
+
+		let exp = /@[а-я]+@/gmi;
+		result = str.split(exp);
+		result.forEach((value, index, array) => {
+			console.log(`${value} ${index}`);
+		});
+
+
+		//match
+		exp = /дом[а-я]*/gmi;
+		result = str.match(exp);
+		result.forEach((value, index, array) => {
+			console.log(`${value} ${index}`);
+		});
+
+		//search
+		exp = /wor/gmi;
+		result = str.search(exp);
+		console.log(result);	
+
+		//replace
+		str = "Завтрак: каша, соевое мясо, протеин. Обед: суп, грибы, протеин, чай. Ужин: салат, протеин чай.";
+		exp = /протеин/gi;
+		str = str.replace(exp, "гейнер");
+		console.log(str);
+
+	</script>
+</body>
+</html>

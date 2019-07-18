@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Java vstr 12</title>
+	<style>
+
+	</style>
+</head>
+<body>
+	<form action="#" name="myform">
+		<input type="text" name="email" placeholder="example@gmail.com">
+		<input type="submit" name="check" value="Проверить">
+	</form>
+	<form action="#" name="myform5">
+		<input type="text" name="domen" placeholder="домен">
+		<input type="submit" name="check5" value="Проверить">
+	</form>
+	<form action="#" name="myform6">
+		<input type="text" name="domen6" placeholder="домен http">
+		<input type="submit" name="check6" value="Проверить">
+	</form>
+	<form action="#" name="myform7">
+		<input type="text" name="domen7" placeholder="домен http https">
+		<input type="submit" name="check7" value="Проверить">
+	</form>
+	<form action="#" name="myform8">
+		<input type="text" name="domen8" placeholder="строка начинается http https">
+		<input type="submit" name="check8" value="Проверить">
+	</form>
+	<form action="#" name="myform9">
+		<input type="text" name="domen9" placeholder="расширением txt, html или php">
+		<input type="submit" name="check9" value="Проверить">
+	</form>
+	<form action="#" name="myform10">
+		<input type="text" name="domen10" placeholder="расширением jpg или jpeg">
+		<input type="submit" name="check10" value="Проверить">
+	</form>
+		<form action="#" name="myform11">
+		<input type="text" name="domen11" placeholder="числом, длиной до 12 цифр">
+		<input type="submit" name="check11" value="Проверить">
+	</form>
+</body>
+	<script>
+		// let str = 'body';
+		// let str1 = 'hello world';
+		// let reg = /hello/;
+		// if (reg.test(str)==true)
+		// 	console.log('true');
+		// else
+		// 	console.log('false');
+		// if (reg.exec(str1)==str1)
+		// 	console.log(str1);
+		// else
+		// 	console.log(reg.exec(str1));
+		// let reg1 = /[a-z]+s?:\/\/[a-z_\.\/]+\b/img;
+
+		document.myform.check.addEventListener('click', ()=>{
+			event.preventDefault();
+				let email = document.myform.email.value;
+				if(/\w+@\w+\.\w+/gmi.test(email)) {
+					alert('Правильно');
+				}
+				else {
+					alert('Не правильно');	
+				}
+		});
+
+// 		1. Дана строка 'aaa@bbb eee7@kkk'. Напишите регулярку, которая найдет строки по шаблону:
+//  любое количество букв и цифр, символ @, любое количество букв и цифр и поменяет местами то, 
+// что стоит до @ на то, что стоит после нее. Например, aaa@bbb должно превратиться в bbb@aaa.
+		let txt1 = 'aaa@bbb eee7@kkk';
+		let reg1 = /([a-z0-9]+)@([a-z0-9]+)/gmi;
+		txt1 = txt1.replace(reg1, '$2@$1');
+		console.log(txt1);
+
+// 2. Дана строка вида 'a1b2c3'. Напишите регулярку, которая найдет все цифры и удвоит их количество таким образом: 
+// 'a11b22c33' (то есть рядом с каждой цифрой напишет такую же).
+		let txt2 = 'a14b2c3dsfsdf5';
+		let reg2 = /(\d+)/gmi;
+		txt2 = txt2.replace(reg2, '$1$1')
+		console.log(txt2);
+		
+// 	3. С помощью метода test определите, что переданная строка является емэйлом. Примеры емэйлов для тестирования mymail@mail.ru,
+ // my.mail@mail.ru, my-mail@mail.ru, my_mail@mail.ru, mail@mail.com, mail@mail.by, mail@yandex.ru.
+		document.myform.check.addEventListener('click', ()=>{
+			event.preventDefault();
+				let email3 = document.myform.email.value;
+				if(/\w+@\w+\.\w+/gmi.test(email3)) {
+					alert('Правильно');
+				}
+				else {
+					alert('Не правильно');	
+				}
+		});
+
+// 4.  Дана строка с текстом, в котором могут быть емейлы. С помощью match найдите все емэйлы в виде массива.
+		let txt4 = 'mymail@mail.ru,my.mail@mail.ru, my-mail@mail.ru, my_mail@mail.ru, mail@mail.com, mail@mail.by, mail@yandex.ru';
+		let email4 = [];
+		email4 = txt4.match(/\w+@\w+\.\w+/gmi);
+		for (elem of email4)
+			console.log(elem);
+
+// 5.  С помощью test определите, что переданная строка является доменом. Примеры доменов: site.ru, site.com, my-site.com.
+		document.myform5.check5.addEventListener('click', ()=>{
+			event.preventDefault();
+				let email5 = document.myform5.domen.value;
+				if(/\w+\.[ru com]/gmi.test(email5)) {
+					alert('Правильно');
+				}
+				else {
+					alert('Не правильно');	
+				}
+		});
+
+//6. С помощью test определите, что переданная строка является доменом. Примеры доменов: http://site.ru, http://site.com.
+		document.myform6.check6.addEventListener('click', ()=>{
+			event.preventDefault();
+				let domen6 = document.myform6.domen6.value;
+				if(/[http]:\/\/\w+\.[ru com]/gmi.test(domen6)) {
+					alert('Правильно');
+				}
+				else {
+					alert('Не правильно');	
+				}
+		});
+
+//7. С помощью test определите, что переданная строка является доменом вида http://site.ru. Протокол может быть как http, так и https.
+		document.myform7.check7.addEventListener('click', ()=>{
+			event.preventDefault();
+				let domen7 = document.myform7.domen7.value;
+				if(/[http]s?:\/\/\w+\.[ru com]/gmi.test(domen7)) {
+					alert('Правильно');
+				}
+				else {
+					alert('Не правильно');	
+				}
+		});
+
+//8. С помощью test определите, что переданная строка начинается с http или с https.
+		document.myform8.check8.addEventListener('click', ()=>{
+			event.preventDefault();
+				let domen8 = document.myform8.domen8.value;
+				if(/^[http]s?/gmi.test(domen8)) {
+					alert('Правильно');
+				}
+				else {
+					alert('Не правильно');	
+				}
+		});
+//9. С помощью test определите, что переданная строка заканчивается расширением txt, html или php.
+		document.myform9.check9.addEventListener('click', ()=>{
+			event.preventDefault();
+				let domen9 = document.myform9.domen9.value;
+				if(/\.(txt|html|php)$/gmi.test(domen9)) {
+					alert('Правильно');
+				}
+				else {
+					alert('Не правильно');
+				}
+		});
+
+//10. С помощью test определите, что переданная строка заканчивается расширением jpg или jpeg
+		document.myform10.check10.addEventListener('click', ()=>{
+			event.preventDefault();
+				let domen10 = document.myform10.domen10.value;
+				if(/\.(jpg|jpeg)$/gmi.test(domen10)) {
+					alert('Правильно');
+				}
+				else {
+					alert('Не правильно');
+				}
+		});
+//11.  С помощью test узнайте является ли строка числом, длиной до 12 цифр.
+		document.myform11.check11.addEventListener('click', ()=>{
+			event.preventDefault();
+				let domen11 = document.myform11.domen11.value;
+				if(/\d{1,12}$/gmi.test(domen11)) {
+					alert('Правильно');
+				}
+				else {
+					alert('Не правильно');
+				}
+		});
+	</script>
+</html>
