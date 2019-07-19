@@ -40,6 +40,11 @@
 		<input type="text" name="domen11" placeholder="числом, длиной до 12 цифр">
 		<input type="submit" name="check11" value="Проверить">
 	</form>
+	</form>
+	<form action="#" name="myform12">
+		<input type="text" name="domen12" placeholder="сумму всех чисел из данной строки">
+		<input type="submit" name="check12" value="Проверить">
+	</form>
 </body>
 	<script>
 		// let str = 'body';
@@ -171,16 +176,77 @@
 					alert('Не правильно');
 				}
 		});
+
 //11.  С помощью test узнайте является ли строка числом, длиной до 12 цифр.
 		document.myform11.check11.addEventListener('click', ()=>{
 			event.preventDefault();
 				let domen11 = document.myform11.domen11.value;
-				if(/\d{1,12}$/gmi.test(domen11)) {
+				if(/^\d{1,12}$/gmi.test(domen11)) {
 					alert('Правильно');
 				}
 				else {
 					alert('Не правильно');
 				}
 		});
+
+//	12. Дана строка с буквами, пробелами и цифрами. Найдите сумму всех чисел из данной строки.
+		document.myform12.check12.addEventListener('click', ()=>{
+			event.preventDefault();
+			let domen12 = document.myform12.domen12.value;
+			let numbers = domen12.match(/[0-9]/gm);
+			console.log('length = ', numbers.length);
+			let sum=0;
+			for (let i=0; i<numbers.length;i++) {
+				sum += parseInt(numbers[i]);
+				console.log(numbers[i]);
+			}
+			alert('Сумма = ' + sum);
+		});
+
+//13. С помощью replace замените в строке домены вида http://site.ru, http://site.com на <a href="http://site.ru">site.ru</a>.
+		let txt13 = 'http://site.ru, http://site.com';
+		let domeni_html = txt13.match(/(http:\/\/\w+\.\w+)/gmi);
+		for (let i=0; i<domeni_html.length; i++) {
+			domeni_html[i] = domeni_html[i].replace(/(http:\/\/)(\w+\.\w+)/, '<a href="$1$2">$2</a>');
+			console.log(domeni_html[i]);
+		}
+
+// 14. С помощью replace замените все повторяющиеся пробелы на один.
+		let txt14 = 'aa   aa  aa      a';
+		txt14 = txt14.replace(/(\s+)/gmi, ' ');
+		console.log(txt14);
+
+//15. Найдите и удалите все комментарии CSS.
+		let txt15 = '// 14. dbdbdbdb.\n' +
+				'\t\tlet txt14 = \'aa   aa  aa      a\';\n' +
+				'\t\ttxt14 = txt14.replace(/(\\s+)/gmi, \' \');\n' +
+				'\t\tconsole.log(txt14);\n' +
+				'\n' +
+				'//15. dgdgbdgbd CSS.';
+		console.log(txt15);
+		txt15 = txt15.replace(/^(\/\/).*/gmi, '').trim();
+		console.log(txt15);
+
+//16. Найдите и удалите все комментарии HTML.
+		let txt16 = '<!DOCTYPE html>\n' +
+				'<html>\n' +
+				'  <head>\n' +
+				'    <!-- заголовок страницы -->\n' +
+				'    <title>Комментарии в HTML документе</title>\n' +
+				'  </head>\n' +
+				'  <body>\n' +
+				'    <!-- шапка сайта -->\n' +
+				'    <div class="header">...</div>\n' +
+				'    <!-- основная часть страницы -->\n' +
+				'    <div class="content">...</div>\n' +
+				'    <!-- левая колонка -->\n' +
+				'    <div class="toolbar">...</div>\n' +
+				'     <!-- подвал сайта -->\n' +
+				'    <div class="footer">...</div>\n' +
+				'  </body>\n' +
+				'</html>';
+		console.log(txt16);
+		txt16 = txt16.replace(/^\s+?(<!--).*/gmi, '').trim();
+		console.log(txt16);
 	</script>
 </html>
